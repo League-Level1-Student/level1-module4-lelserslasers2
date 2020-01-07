@@ -33,6 +33,7 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
    	 // 2. Adjust the frameWidth and frameHeight variables to fit your image nicely (doesn’t need a new line of code)
      // 3. Complete the begin() method in the FortuneTellerRunner class
  	 // 4. add a mouse listener to the frame
+   	 frame.addMouseListener(this);
 
     }
 
@@ -43,29 +44,31 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
    	 int mouseX = e.getX();
    	 int mouseY = e.getY();
    	 // 5. Print the mouseX variable
-
+   	 System.out.println("Mouse X:" + mouseX);
+   	 System.out.println("Mouse Y:" + mouseY);
+   	 System.out.println("");
    	 // 6. Add the mouseY variable to the previous line so that it prints out too (no new line)
    	 // 7. Adjust your secret location co-ordinates here:
-   	 int secretLocationX = 0;
-   	 int secretLocationY = 0;
+   	 int secretLocationX = 339;
+   	 int secretLocationY = 455;
    	 /** If the mouse co-ordinates and secret location are close, we'll let them ask a question. */
    	 if (areClose(mouseX, secretLocationX) && areClose(mouseY, secretLocationY)) {
    		 // 8. Get the user to enter a question for the fortune teller
-
+   		 String question = JOptionPane.showInputDialog("Thou hath found thy! What shoult you asketh? ");
    		 // 9. Find a spooky sound and put it in your default package (freesound.org)
-   		 // AudioClip sound = JApplet.newAudioClip(getClass().getResource("creepy-noise.wav"));
+   		 AudioClip sound = JApplet.newAudioClip(getClass().getResource("creepy-noise.wav"));
    		 // 10. Play the sound
-
+   		 sound.play();
    		 // 11. Use the pause() method below to wait until your music has finished
-
+   		 pause(5);
    		 // 12. Insert your completed Magic 8 ball code here
-
+   		 new Magic8Ball().ballOEight(question);
    	 }
 
     }
 
     private boolean areClose(int mouseX, int secretLocationX) {
-   	 return mouseX < secretLocationX + 15 && mouseX > secretLocationX - 15;
+   	 return mouseX < secretLocationX + 10 && mouseX > secretLocationX - 10;
     }
 
     private void pause(int seconds) {
